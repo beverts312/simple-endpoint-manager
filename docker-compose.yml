@@ -1,0 +1,12 @@
+nginx:
+  build: .
+  image: beverts312/consul-nginx
+  restart: always
+  ports:
+    - "80:80"
+  environment:
+    - CONSUL_SOCKET=consul:8500
+consul:
+  image: consul
+  ports:
+    - "8500:8500"
