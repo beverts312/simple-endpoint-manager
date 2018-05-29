@@ -1,12 +1,19 @@
 nginx:
-  build: .
-  image: beverts312/consul-nginx
+  image: beverts312/simple-endpoint-manager
   restart: always
   ports:
     - "80:80"
+    - "443:443"
   environment:
-    - CONSUL_SOCKET=consul:8500
+    - CONSUL_HOST=consul:8500
+  volumes:
+    - $SECURITY_DIR:/security
+  links:
+    - consul
 consul:
   image: consul
   ports:
     - "8500:8500"
+  environment:
+    - CONSUL_UI_BETA=true
+  

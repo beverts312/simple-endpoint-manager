@@ -17,6 +17,10 @@ RUN apk add --virtual .buildpkgs --no-cache curl && \
 
 ADD img /
 
+RUN chmod +x /app/start.sh && \
+    chmod +x /app/reload.sh && \
+    chmod +x /app/generate.py
+
 # Mount for certificates, they should be named private.pem and public.pem
 VOLUME /security
 

@@ -1,11 +1,11 @@
 #!/bin/sh
-export CONSUL_SOCKET=$CONSUL_SOCKET
+export CONSUL_HOST=$CONSUL_HOST
 
-if [ -z $CONSUL_SOCKET ]; then
-  echo "CONSUL_SOCKET required";
+if [ -z $CONSUL_HOST ]; then
+  echo "CONSUL_HOST required";
   exit 1;
 else
-  echo "Consul Socket: $CONSUL_SOCKET"
+  echo "Consul Socket: $CONSUL_HOST"
 fi
 
 if [ -z $WAIT_TIME ]; then
@@ -16,6 +16,6 @@ echo "server {}" > /app/routes.conf
 
 exec nginx -c /app/nginx.conf &
 consul-template \
-  -consul $CONSUL_SOCKET \
+  -consul-addr $CONSUL_HOST \
   -template "/app/vars.ctmpl:/app/vars.json:/app/reload.sh" \
   -wait $WAIT_TIME
