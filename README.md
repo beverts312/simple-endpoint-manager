@@ -1,4 +1,9 @@
 # Simple Endpoint Manager
+
+![docker build](https://img.shields.io/docker/build/beverts312/simple-endpoint-manager.svg)
+[![](https://images.microbadger.com/badges/image/beverts312/simple-endpoint-manager.svg)](https://microbadger.com/images/beverts312/simple-endpoint-manager)
+[![](https://images.microbadger.com/badges/version/beverts312/simple-endpoint-manager.svg)](https://microbadger.com/images/beverts312/simple-endpoint-manager)  
+
 Leverage Consul and Nginx to easily router traffic
 
 ## How to use it
