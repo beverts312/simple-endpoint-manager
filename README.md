@@ -6,6 +6,11 @@ Configure DNS for all the domains you want to the place where the nginx containe
 
 Tip: Use wildcard subdomains if you plan on using a bunch
 
+#### Consul
+Connection to consul is configured with environmental variables:  
+* `CONSUL_HOST`: where to find consul
+* `CONSUL_ACL`: ACL to use to connect to consul
+
 #### Certs  
 Put certs `/security` named `public.pem` and `private.pem`.
 All traffic on `80` will be redirected to `443`.

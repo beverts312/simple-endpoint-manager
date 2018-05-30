@@ -1,5 +1,6 @@
 #!/bin/sh
 export CONSUL_HOST=$CONSUL_HOST
+export CONSUL_ACL=$CONSUL_ACL
 
 if [ -z $CONSUL_HOST ]; then
   echo "CONSUL_HOST required";
@@ -14,8 +15,17 @@ fi
 
 echo "server {}" > /app/routes.conf
 
-exec nginx -c /app/nginx.conf &
-consul-template \
-  -consul-addr $CONSUL_HOST \
-  -template "/app/vars.ctmpl:/app/vars.json:/app/reload.sh" \
-  -wait $WAIT_TIME
+if [ -z $CONSUL_ACL ]; then
+  exec nginx -c /app/nginx.conf &
+  consul-template \
+    -consul-addr $CONSUL_HOST \
+    -template "/app/vars.ctmpl:/app/vars.json:/app/reload.sh" \
+    -wait $WAIT_TIME
+else
+  exec nginx -c /app/nginx.conf &
+  consul-template \
+    -consul-addr $CONSUL_HOST \
+    -consul-token $CONSUL_ACL \
+    -template "/app/vars.ctmpl:/app/vars.json:/app/reload.sh" \
+    -wait $WAIT_TIME
+fi
