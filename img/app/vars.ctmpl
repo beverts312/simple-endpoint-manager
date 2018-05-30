@@ -1,5 +1,5 @@
 {
-  {{ $n := len (tree "/") }}{{ range $i, $e := (tree "/") }}{{ $keyArr := (.Key | split "/") }}{{ $name := index $keyArr 0 }}{{ $sub := index $keyArr 1 }}
-    "{{ $sub }}.{{ $name }}": "{{ .Value }}" {{ if ne $n (add 1 $i) }},{{end}}
+  {{ $n := len (tree "/") }}{{ range $i, $e := (tree "/") }}
+    "{{ .Key }}": "{{ .Value }}" {{ if ne $n (add 1 $i) }},{{end}}
   {{ end }}
 }
