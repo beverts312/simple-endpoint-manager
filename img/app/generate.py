@@ -44,5 +44,5 @@ for domain in mappedDomains:
         proxy_ssl_name        $proxy_host;
         proxy_pass            %s;
       }
-    }
   """ % (path, mappedDomains[domain][path])
+  print "}"
